@@ -4,227 +4,132 @@
         "id": "girl-with-lobster", 
         "imageUrl": "assets/images/bad_art/bad_art1.png", 
         "title": "Girl with Lobster", 
-        "artist": "Buchner",
-        "nationality": "Unknown",
-        "year": "Unknown",
-        "medium": "Unknown",
-        "size": "",
-        "snippet": "This paingint resides in the Official Bad Art Museum of Art, Seattle, Washington. USA, also known by the acronym "OBAMA"), and is located inside Cafe Racer."
-    }, 
+        "artist": "Buchner"
+    },
     {
         "order": 2, 
         "id": "mana-lisa", 
         "imageUrl": "assets/images/bad_art/bad_art2.png", 
         "title": "Mana Lisa", 
-        "artist": "Andrea Schmidt",
-        "nationality": "Vancouver",
-        "year": "2002",
-        "medium": "looks like acrylic",
-        "size": "",
-        "snippet": "Donated by the artist to the Museum of Bad Art in Somerville, Massechusettes, USA."
+        "artist": "Andrea Schmidt"
     }, 
     {
         "order": 3, 
         "id": "charlie", 
         "imageUrl": "assets/images/bad_art/bad_art3.png", 
         "title": "Charlie", 
-        "artist": "Anonymous",
-        "nationality": "Unknown",
-        "year": "Unknown",
-        "medium": "oil on canvas",
-        "size": "",
-        "snippet": "Donated by the artist to the Museum of Bad Art in Somerville, Massechusettes, USA."
+        "artist": "Anonymous"
     }, 
     {
         "order": 4, 
         "id": "sheeba", 
         "imageUrl": "assets/images/bad_art/bad_art4.png", 
         "title": "Sheeba", 
-        "artist": "Anonymous",
-        "nationality": "Unkown",
-        "year": "Unknown",
-        "medium": "oil on canvas",
-        "size": "",
-        "snippet": "Sheeba, freind of Charlie.  Purchased at a Boston thrift store."    
+        "artist": "Anonymous"
     }, 
     {
         "order": 5, 
         "id": "mama-and-babe", 
         "imageUrl": "assets/images/bad_art/bad_art5.png", 
         "title": "Mama and Babe", 
-        "artist": "Sarah Irani",
-        "nationality": "Vancouver",
-        "year": "2002",
-        "medium": "acrylic on canvas",
-        "size": "",
-        "snippet": "Donated by the artist to the Museum of Bad Art in Somerville, Massechusettes, USA."
-    }
-    , {
+        "artist": "Sarah Irani"
+    },
+    {
         "order": 6, 
         "id": "gilded_nude", 
         "imageUrl": "assets/images/bad_art/bad_art6.png", 
         "title": "Gilded Nude", 
-        "artist": "Andrea Schmidt",
-        "nationality": "Vancouver",
-        "year": "2002",
-        "medium": "Unknown",
-        "size": "",
-        "snippet": "The viewer is struck immediately by the youthful female subject’s oversized ... arm.  Gallery owner Michael Frank says this piece exemplifies the mission of the Museum of Bad Art (MOBA) in Boston, USA."
-    }
-    , {
+        "artist": "Andrea Schmidt"
+    }, 
+    {
         "order": 7, 
         "id": "a_tree_grows_in_boston", 
         "imageUrl": "assets/images/bad_art/bad_art7.png", 
         "title": "A Tree Grows in Boston", 
-        "artist": "Tom Eiler",
-        "nationality": "Unknown",
-        "year": "2006",
-        "medium": "Acrylic on Canvas",
-        "size": "",
-        "snippet": "Purchased by Mike Frank at a Boston thrift shop, April 2011."
+        "artist": "Tom Eiler"
     },
     {
         "order": 8, 
         "id": "sam_and_james_bourne", 
         "imageUrl": "assets/images/bad_art/bad_art8.png", 
         "title": "Sam and James Bourne", 
-        "artist": "Andrea Schmidt",
-        "nationality": "Vancouver",
-        "year": "2002",
-        "medium": "Unknown",
-        "size": "",
-        "snippet": "This painting is on David Bradbury's Bad Art website.  It was a wedding present commission from Kirstin Hodgkinson. Sam has a sandwich in her mouth. It doesn't look like a sandwich because the artist said he ran out of white paint and the deadline was close."
+        "artist": "Andrea Schmidt"
     }, 
     {
         "order": 9, 
         "id": "gingerminge", 
         "imageUrl": "assets/images/bad_art/bad_art9.png", 
         "title": "Gingerminge", 
-        "artist": "Jake and Dinos Chapman",
-        "nationality": "UK",
-        "year": "2001",
-        "medium": "Oil on canvas",
-        "size": "",
-        "snippet": "Shown at Tate Liverpool, Jake and Dinos Chapman address controversial issues in their pieces, often pitched at the boundaries of taste."
+        "artist": "Jake and Dinos Chapman"
     }, 
     {
         "order": 10, 
         "id": "glitterati-elvis", 
         "imageUrl": "assets/images/bad_art/bad_art10.png", 
         "title": "Glitterati Elvis", 
-        "artist": "Unknown",
-        "nationality": "Unknown",
-        "year": "Unknown",
-        "medium": "Unknown",
-        "size": "",
-        "snippet": "In the permanent collection of the Official Bad Art Museum of Art in Seattle, WA, USA."
+        "artist": "Unknown"
     }, 
     {
         "order": 11, 
         "id": "think_again", 
         "imageUrl": "assets/images/bad_art/bad_art11.png", 
         "title": "Think Again", 
-        "artist": "Richie",
-        "nationality": "Vancouver",
-        "year": "2002",
-        "medium": "Acrylic on canvas",
-        "size": "",
-        "snippet": "Acquired by Scott Wilson from trash."
+        "artist": "Richie"
     }, 
     {
         "order": 12, 
         "id": "david_bradbury_self_portrait", 
         "imageUrl": "assets/images/bad_art/bad_art12.png", 
         "title": "Self Portrait", 
-        "artist": "David Bradbury",
-        "nationality": "UK",
-        "year": "2002",
-        "medium": "Looks like acrylic",
-        "size": "",
-        "snippet": "The title piece for the Bad Art by David Bradbury website acoompanied by the quote: All art is quite useless - Oscar Wilde."
+        "artist": "David Bradbury"
     }, 
     {
         "order": 13, 
         "id": "woman_iii", 
-        "imageUrl": "assets/images/bad_art/good_art1.png", 
+        "imageUrl": "assets/images/good_art/good_art1.png", 
         "title": "Woman III", 
-        "artist": "Willem de Kooning",
-        "nationality": "",
-        "year": "1951 to 1953",
-        "medium": "Oil on canvas",
-        "size": "1.73 by 1.23 m",
-        "snippet": "As of 2015, this is the third most expensive painting ever sold.  In 2006 it sold at auction to Steven A. Cohen for $137.5 million."
+        "artist": "Willem de Kooning"
     }, 
     {
         "order": 14, 
         "id": "dora_maar_au_chat", 
-        "imageUrl": "assets/images/bad_art/good_art2.png", 
-        "title": "Dora Maar au Chat (Dora Maar with Cat)", 
-        "artist": "Pablo Picasso",
-        "nationality": "Spanish",
-        "year": "1941",
-        "medium": "Oil on canvas",
-        "size": "128.3 cm × 95.3 cm",
-        "snippet": "The painter's lover, seated on a chair with a small cat perched on her shoulders.  One of the world's most expensive paintings, it was sold at auction in 2006 in New York to an anonymous Russian bidder for US$95,216,000."
+        "imageUrl": "assets/images/good_art/good_art2.png", 
+        "title": "Dora Maar with Cat", 
+        "artist": "Pablo Picasso"
     }, 
     {
         "order": 15, 
         "id": "portrait_du_docteur_gachet", 
-        "imageUrl": "assets/images/bad_art/good_art3.png", 
+        "imageUrl": "assets/images/good_art/good_art3.png", 
         "title": "Portrait of Docteur Gachet", 
-        "artist": "Vincent Van Gogh",
-        "nationality": "Dutch",
-        "year": "1890",
-        "medium": "Oil on canvas",
-        "size": "67 cm × 56 cm",
-        "snippet": "The most revered painting showing the doctor who took care of Van Gogh during the final months of his life.  It was sold for $ 82.5 million in 1990."
+        "artist": "Vincent Van Gogh"
     }, 
     {
         "order": 16,
         "id": "false_start", 
-        "imageUrl": "assets/images/bad_art/good_art4.png", 
+        "imageUrl": "assets/images/good_art/good_art4.png", 
         "title": "False Start", 
-        "artist": "Jasper Johns",
-        "nationality": "USA",
-        "year": "1959",
-        "medium": "Oil on canvas",
-        "size": "1.71 m x 1.37 m",
-        "snippet": "Sold for $94.4 in 2006 in a private sale to Kenneth C. Griffin. Critical commentary has been devoted to the contradictions of the mislabeling of colour names, saying it is uninteresting but then discussed it at length."
+        "artist": "Jasper Johns"
     }, 
     {
         "order": 17,
         "id": "mona_lisa", 
-        "imageUrl": "assets/images/bad_art/good_art5.png", 
+        "imageUrl": "assets/images/good_art/good_art5.png", 
         "title": "Mona Lisa", 
-        "artist": "Leonardo da Vinci",
-        "nationality": "Italian",
-        "year": "1503 to 1507",
-        "medium": "Oil on poplar",
-        "size": "77 cm × 53 cm",
-        "snippet": "Thought to be a portrait of Lisa Gherardini, this painting has the highest insurance value of around US$780 million today."
+        "artist": "Leonardo da Vinci"
     }, 
     {
         "order": 18,
         "id": "no_5_1948",
-        "imageUrl": "assets/images/bad_art/good_art6.png",
+        "imageUrl": "assets/images/good_art/good_art6.png",
         "title": "No. 5, 1948",
-        "artist": "Jackson Pollack",
-        "nationality": "USA",
-        "year": "1948",
-        "medium": "Oil on fiberboard",
-        "size": "2.4 m × 1.2 m",
-        "snippet": "In 2006 this painting was sold to David Martinez in a private sale for $140 million."
+        "artist": "Jackson Pollack"
     },
     {
         "order": 19,
         "id": "portrait_of_adele_bloch-bauer_i", 
-        "imageUrl": "assets/images/bad_art/good_art7.png", 
+        "imageUrl": "assets/images/good_art/good_art7.png", 
         "title": "Portrait of Adele Bloch-Bauer I", 
-        "artist": "Gustav Klimt",
-        "nationality": "",
-        "year": "1907",
-        "medium": "Oil, silver, and gold on canvas",
-        "size": "",
-        "snippet": " The first of two portraits Klimt painted of Bloch-Bauer, a refined art-loving Viennese salon lady.  The painting was appropriated by the Nazis, and later sold for US$135 million to Ronald Lauder for his Neue Galerie in New York City in June 2006."
+        "artist": "Gustav Klimt"
     }
 ]

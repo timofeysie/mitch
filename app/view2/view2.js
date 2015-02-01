@@ -13,7 +13,7 @@ angular.module('myApp.view2', ['ngRoute'])
     var score_text;
     var money_text;
 	$scope.value = 'Collect the good art, avoid the bad art.';
-	SideScroller.game = new Phaser.Game(746, 420, Phaser.AUTO, '');
+	SideScroller.game = new Phaser.Game(746, 420, Phaser.CANVAS, '');
 
 var BootState = {
 	preload: function() {
