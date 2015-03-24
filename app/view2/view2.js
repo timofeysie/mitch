@@ -1,4 +1,16 @@
 'use strict';
+/**
+* @fileOverview This is the Phaser game controller.  Currently it contains the game, but this will be split up into it's  parts:
+ Boot for BootState.
+* Preload for PreloadState.
+* Game for GameState.
+* @author Timothy Curchod
+* @version: 0.1
+* @memberOf view2
+* @constructor
+* @param {string} title - The title of the book.
+* @param {string} author - The author of the book.
+*/
 angular.module('myApp.view2', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2', {
@@ -6,16 +18,18 @@ angular.module('myApp.view2', ['ngRoute'])
     controller: 'View2Ctrl'
   });
 }])
-.controller('View2Ctrl', ['$scope', function($scope) {
+.controller('View2Ctrl', ['$scope', '$rootScope', function($scope, $rootScope) {
 	var SideScroller = SideScroller || {};
 	var money = 2000;
-    var score = 0;
-    var score_text;
-    var money_text;
+  var score = 0;
+  var score_text;
+  var money_text;
 	$scope.value = 'Collect the good art, avoid the bad art.';
 	SideScroller.game = new Phaser.Game(746, 420, Phaser.CANVAS, '');
+  var collection = [];
 
 var BootState = {
+  /** @memberOf view2 Preload function */
 	preload: function() {
     	this.load.image('preloadbar', 'assets/images/preloader-bar.png'); //assets we'll use in the loading screen
   	},
@@ -38,6 +52,8 @@ var PreloadState = {
     this.preloadBar.scale.setTo(3);
     this.load.setPreloadSprite(this.preloadBar);
     //load game assets
+    this.load.spritesheet('mitch', 'assets/images/mitch_walk.png', 104, 150);
+    //this.load.image('mitch', 'assets/images/mitch_walk.png');
     this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png');
     this.load.image('player', 'assets/images/player.png');
@@ -45,13 +61,14 @@ var PreloadState = {
     this.load.image('playerDead', 'assets/images/player_dead.png');
     this.load.image('goldCoin', 'assets/images/goldCoin.png');
     this.load.audio('coin', ['assets/audio/coin.ogg', 'assets/audio/coin.mp3']);
+    this.load.image('good_art7', 'http://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Landscape_with_Dunes.jpg/100px-Landscape_with_Dunes.jpg');
     this.load.image('good_art1', 'assets/images/good_art/good_art1.png');
     this.load.image('good_art2', 'assets/images/good_art/good_art2.png');
     this.load.image('good_art3', 'assets/images/good_art/good_art3.png');
     this.load.image('good_art4', 'assets/images/good_art/good_art4.png');
     this.load.image('good_art5', 'assets/images/good_art/good_art5.png');
     this.load.image('good_art6', 'assets/images/good_art/good_art6.png');
-    this.load.image('good_art7', 'assets/images/good_art/good_art7.png');
+    //this.load.image('good_art7', 'assets/images/good_art/good_art7.png');
     this.load.image('bad_art1', 'assets/images/bad_art/bad_art1.png');
     this.load.image('bad_art2', 'assets/images/bad_art/bad_art2.png');
     this.load.image('bad_art3', 'assets/images/bad_art/bad_art3.png');
@@ -84,13 +101,15 @@ var GameState = {
     this.createCoins(); //create coins and art
     this.createGoodArt();
     this.createBadArt();
-    this.player = this.game.add.sprite(100, 300, 'player'); //create player
+    //this.player = this.game.add.sprite(100, 300, 'player'); //create player
+    this.player = this.game.add.sprite(100, 300, 'mitch');
     this.game.physics.arcade.enable(this.player); //enable physics on the player
     this.player.body.gravity.y = 1000; //player gravity
     var playerDuckImg = this.game.cache.getImage('playerDuck'); //properties when the player is ducked and standing, so we can use in update()
     this.player.duckedDimensions = {width: playerDuckImg.width, height: playerDuckImg.height};
     this.player.standDimensions = {width: this.player.width, height: this.player.height};
     this.player.anchor.setTo(0.5, 1);
+    this.player.animations.add('right', [1, 2, 3, 4, 5], 10, true);
     this.game.camera.follow(this.player); //the camera will follow the player in the world
     this.cursors = this.game.input.keyboard.createCursorKeys(); //move player with cursor keys
     this.initGameController(); //init game controller
@@ -112,6 +131,7 @@ var GameState = {
     //only respond to keys and keep the speed if the player is alive
     if(this.player.alive) {
       this.player.body.velocity.x = 300;  
+      // this.player.animations.play('right');
       if(this.cursors.up.isDown) {
         this.playerJump();
       }
@@ -127,9 +147,15 @@ var GameState = {
       // Behavior when reaching the edge: this.game.world.width
       if(this.player.x >= this.game.world.width) {
         //this.game.state.start('Game');
-        this.game.destroy(); 
-        $scope.$emit('game:over', 'sideScroller'); //Uncaught TypeError: Cannot read property '$emit' of undefined
-        // Uncaught TypeError: Cannot read property 'update' of null
+        $scope.$emit('gameover', 'sideScroller');
+        try
+        {
+          this.game.destroy(); 
+        }
+        catch(err) 
+        {
+          console.log(err.message);
+        }
       }
     }
   },
@@ -154,20 +180,20 @@ var GameState = {
     {
       score = score + 50;
       money = money - 500;
-      console.log('type: '+collectable.type+' name '+collectable.name);
+      //console.log('type: '+collectable.type+' name '+collectable.name);
       collectable.destroy();
       $scope.$emit('collect', collectable);
     }  else if (collectable.type == 'bad_art' && money > 0)
     {
       score = score - 10;
       money = money - 500;
-      console.log('type: '+collectable.type+' name '+collectable.name);
+      //console.log('type: '+collectable.type+' name '+collectable.name);
       collectable.destroy();
       $scope.$emit('collect', collectable);
     } else if (collectable.type == 'coin')
     {
       money = money + 1000;
-      console.log('type: '+collectable.type+' name '+collectable.name);
+      //console.log('type: '+collectable.type+' name '+collectable.name);
       collectable.destroy();
     }
     if (score < 0) { score = 0;}
@@ -298,9 +324,15 @@ var GameState = {
     if (event.name == 'collect')
     {
 			console.log('received '+event.name+" - "+data.name);
-    } else if (event.name == 'game:over')
-    {
-      console.log('game over');
+      collection[collection.length] = data.name;
     }
 	});
+
+  $scope.$on('gameover', function(event, data){
+    if (event.name == 'gameover')
+    {
+      console.log('game over - sending '+collection.length+' paintings');
+      $rootScope.$emit('gameover', collection.data);
+    }
+  });
 }]);

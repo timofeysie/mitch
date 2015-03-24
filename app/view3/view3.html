@@ -1,25 +1,24 @@
-<p>Your art collection</p>
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      Search: <input ng-model="query">
       Sort by:
-		<select ng-model="orderProp">
-  			<option value="title">Title</option>
-  			<option value="order">Latest</option>
-		</select>
+		  <select ng-model="orderProp">
+  			<option value="title">title</option>
+  			<option value="order">badness</option>
+		  </select>
+
     </div>
-    <div class="col-md-10">
+    <div class="col-md-5">
       <!--Body content-->
 
-<ul ng-controller="View3Ctrl">
-    <li ng-repeat="painting in paintings | filter:query  | orderBy:orderProp" class="thumbnail">
-    	<a href="#/view4/{{panting.id}}" class="thumb"><img ng-src="{{painting.imageUrl}}"></a>
-            <a href="#/view4/{{painting.id}}">{{painting.title}}</a>
+      <ul ng-controller="View3Ctrl" class="phones">
+        <li ng-repeat="painting in paintings | filter:collection  | orderBy:orderProp " class="thumbnail">
+    	    <a href="#/view4/{{panting.id}}" class="thumb">
+          <img ng-src="{{painting.imageUrl}}"></a>
+          <a href="#/view4/{{painting.id}}">{{painting.title}}</a>
       		<p>{{painting.artist}}</p>
-    </li>
-</ul>
+        </li>
+      </ul>
 
     </div>
   </div>

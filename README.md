@@ -11,10 +11,20 @@ npm install
 npm start
 ```
 
-http://localhost:8080/app/#/view1
+## Development
+The current layout shown below in the directory layout section has the views split separate folders.  At some point the tests will be moved out to a separate toplevel tests directory.
+view1 - Main menu
+view2 - The sidescroller game to collect the art.
+view3 - View the art collection.
+view4 - View individual pieces of art.
 
-## Backup
-zip -r mitch.zip angular-seed
+Items to work on:
+
+- Show only pieces collected during the sidescroller game in view3
+- Make icons and a splashscreen
+- Put view4 into view3, so that one piece is hightlighted at all times, and clicking on a piece sends it to the main screen.
+
+http://localhost:8080/app/#/view1
 
 ## Directory Layout
 
