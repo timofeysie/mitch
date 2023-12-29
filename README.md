@@ -1,247 +1,197 @@
-### Mitch the Art Dealer
+# Mitch the Art Dealer
 
-A game about art based on the Angular Seed project.  Tests run with Kharma and Protractor.  It uses the Phaser game framework.  Dependencies are handled by Bower.
+## Workflow
 
-### Install Dependencies & Start
-
-NPM, the Node Package Manager will automatically run Bower. so we can simply do:
-
-```
+```sh
 npm install
-npm start
+npm run start
+npm run build
 ```
 
-## Development
-The current layout shown below in the directory layout section has the views split separate folders.  At some point the tests will be moved out to a separate toplevel tests directory.
-view1 - Main menu
-view2 - The sidescroller game to collect the art.
-view3 - View the art collection.
-view4 - View individual pieces of art.
+## Phaser 3 version
 
-Items to work on:
+[API docs for Arcade](https://newdocs.phaser.io/docs/3.70.0/Phaser.Physics.Arcade)
 
-- Show only pieces collected during the sidescroller game in view3
-- Make icons and a splashscreen
-- Put view4 into view3, so that one piece is hightlighted at all times, and clicking on a piece sends it to the main screen.
+## Original Phaser 3 + TypeScript + Vite.js Template
 
-http://localhost:8080/app/#/view1
+Followed [part 1](https://www.youtube.com/watch?v=tFkMxzHwmDw&t=0s&ab_channel=ourcade) to set up the project.
 
-## Directory Layout
+Since Phaser now has a TypeScript starter, we used [this template](https://github.com/ourcade/phaser3-typescript-vite-template) which differs from the tutorial.
 
-```
-app/                    --> all of the source files for the application
-  app.css               --> default stylesheet
-  components/           --> all app specific modules
-    version/              --> version related components
-      version.js                 --> version module declaration and basic "version" value service
-      version_test.js            --> "version" value service tests
-      version-directive.js       --> custom directive that returns the current app version
-      version-directive_test.js  --> version directive tests
-      interpolate-filter.js      --> custom interpolation filter
-      interpolate-filter_test.js --> interpolate filter tests
-  view1/                --> the view1 view template and logic
-    view1.html            --> the partial template
-    view1.js              --> the controller logic
-    view1_test.js         --> tests of the controller
-  view2/                --> the view2 view template and logic
-    view2.html            --> the partial template
-    view2.js              --> the controller logic
-    view2_test.js         --> tests of the controller
-  app.js                --> main application module
-  index.html            --> app layout file (the main html template file of the app)
-  index-async.html      --> just like index.html, but loads js files asynchronously
-karma.conf.js         --> config file for running unit tests with Karma
-e2e-tests/            --> end-to-end tests
-  protractor-conf.js    --> Protractor config file
-  scenarios.js          --> end-to-end scenarios to be run by Protractor
+I also followed along with the code examples from the official [tutorial](https://phaser.io/tutorials/making-your-first-phaser-3-game/part7), converting them to TypeScript along the way.
+
+[Collecting stars](https://phaser.io/tutorials/making-your-first-phaser-3-game/part8) is part of the tutorial to give you an idea.
+
+An example of would be:
+
+```js
+function collectStar (player, star)
+{
+    star.disableBody(true, true);
+    score += 10;
+    scoreText.setText('Score: ' + score);
+    if (stars.countActive(true) === 0)
+    {
+        stars.children.iterate(function (child) {
+            child.enableBody(true, child.x, 0, true, true);
+        });
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    }
+}
 ```
 
-## Testing
+Using TypeScript looks like this:
 
-There are two kinds of tests in the angular-seed application: Unit tests and End to End tests.
-
-### Running Unit Tests
-
-The angular-seed app comes preconfigured with unit tests. These are written in
-[Jasmine][jasmine], which we run with the [Karma Test Runner][karma]. We provide a Karma
-configuration file to run them.
-
-* the configuration is found at `karma.conf.js`
-* the unit tests are found next to the code they are testing and are named as `..._test.js`.
-
-The easiest way to run the unit tests is to use the supplied npm script:
-
+```ts
+  private handleCollectStar(
+    player: Phaser.GameObjects.GameObject,
+    s: Phaser.GameObjects.GameObject
+  ) {
+    const star = s as Phaser.Physics.Arcade.Image;
+    star.disableBody(true, true);
+    this.score += 10;
+    this.scoreText?.setText("Score: " + this.score);
+    if (this.stars?.countActive(true) === 0) {
+      this.stars.children.iterate((c) => {
+        const child = c as Phaser.Physics.Arcade.Image;
+        child.enableBody(true, child.x, 0, true, true);
+      });
+      if (this.player) {
+        const x =
+          this.player?.x < 400
+            ? Phaser.Math.Between(400, 800)
+            : Phaser.Math.Between(0, 400);
+        const bomb: Phaser.Physics.Arcade.Image = this.bombs?.create(
+          x,
+          16,
+          "bomb"
+        );
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+      }
+    }
+  }
 ```
-npm test
-```
+  
+The [ourcade blog](https://blog.ourcade.co/posts/2020/make-first-phaser-3-game-modern-javascript-part2/) covers splitting up code in a more professional manner.  This would be a good next step to set up the project to grow bigger.
 
-This script will start the Karma test runner to execute the unit tests. Moreover, Karma will sit and
-watch the source and test files for changes and then re-run the tests whenever any of them change.
-This is the recommended strategy; if your unit tests are being run every time you save a file then
-you receive instant feedback on any changes that break the expected code functionality.
+## Generated content
 
-You can also ask Karma to do a single run of the tests and then exit.  This is useful if you want to
-check that a particular version of the code is operating as expected.  The project contains a
-predefined script to do this:
+> Make Phaser 3 games with TypeScript and modern frontend tooling.
 
-```
-npm run test-single-run
-```
+![License](https://img.shields.io/badge/license-MIT-green)
 
+This is a TypeScript specific fork of [phaser3-vite-template](https://github.com/ourcade/phaser3-vite-template).
 
-### End to end testing
+## Prerequisites
 
-The angular-seed app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
-are run with the [Protractor][protractor] End-to-End test runner.  It uses native events and has
-special features for Angular applications.
+You'll need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed.
 
-* the configuration is found at `e2e-tests/protractor-conf.js`
-* the end-to-end tests are found in `e2e-tests/scenarios.js`
+It is highly recommended to use [Node Version Manager](https://github.com/nvm-sh/nvm) (nvm) to install Node.js and npm.
 
-Protractor simulates interaction with our web app and verifies that the application responds
-correctly. Therefore, our web server needs to be serving up the application, so that Protractor
-can interact with it.
+For Windows users there is [Node Version Manager for Windows](https://github.com/coreybutler/nvm-windows).
 
-```
-npm start
-```
+Install Node.js and `npm` with `nvm`:
 
-In addition, since Protractor is built upon WebDriver we need to install this.  The angular-seed
-project comes with a predefined script to do this:
+```bash
+nvm install node
 
-```
-npm run update-webdriver
-```
-
-This will download and install the latest version of the stand-alone WebDriver tool.
-
-Once you have ensured that the development web server hosting our application is up and running
-and WebDriver is updated, you can run the end-to-end tests using the supplied npm script:
-
-```
-npm run protractor
+nvm use node
 ```
 
-This script will execute the end-to-end tests against the application being hosted on the
-development server.
+Replace 'node' with 'latest' for `nvm-windows`.
 
+## Getting Started
 
-## Updating Angular
+You can clone this repository or use [degit](https://github.com/Rich-Harris/degit) to scaffold the project like this:
 
-Previously we recommended that you merge in changes to angular-seed into your own fork of the project.
-Now that the angular framework library code and tools are acquired through package managers (npm and
-bower) you can use these tools instead to update the dependencies.
+```bash
+npx degit https://github.com/ourcade/phaser3-typescript-vite-template my-folder-name
+cd my-folder-name
 
-You can update the tool dependencies by running:
-
-```
-npm update
+npm install
 ```
 
-This will find the latest versions that match the version ranges specified in the `package.json` file.
-
-You can update the Angular dependencies by running:
+Start development server:
 
 ```
-bower update
+npm run start
 ```
 
-This will find the latest versions that match the version ranges specified in the `bower.json` file.
-
-
-## Loading Angular Asynchronously
-
-The angular-seed project supports loading the framework and application scripts asynchronously.  The
-special `index-async.html` is designed to support this style of loading.  For it to work you must
-inject a piece of Angular JavaScript into the HTML page.  The project has a predefined script to help
-do this.
+To create a production build:
 
 ```
-npm run update-index-async
+npm run build
 ```
 
-This will copy the contents of the `angular-loader.js` library file into the `index-async.html` page.
-You can run this every time you update the version of Angular that you are using.
+Production files will be placed in the `dist` folder. Then upload those files to a web server. 🎉
 
-
-## Serving the Application Files
-
-While angular is client-side-only technology and it's possible to create angular webapps that
-don't require a backend server at all, we recommend serving the project files using a local
-webserver during development to avoid issues with security restrictions (sandbox) in browsers. The
-sandbox implementation varies between browsers, but quite often prevents things like cookies, xhr,
-etc to function properly when an html page is opened via `file://` scheme instead of `http://`.
-
-
-### Running the App during Development
-
-The angular-seed project comes preconfigured with a local development webserver.  It is a node.js
-tool called [http-server][http-server].  You can start this webserver with `npm start` but you may choose to
-install the tool globally:
+## Project Structure
 
 ```
-sudo npm install -g http-server
+    .
+    ├── dist
+    ├── node_modules
+    ├── public
+    ├── src
+    │   ├── HelloWorldScene.ts
+    │   ├── main.ts
+	├── index.html
+    ├── package.json
 ```
 
-Then you can start your own development web server to serve static files from a folder by
-running:
+TypeScript files are intended for the `src` folder. `main.ts` is the entry point referenced by `index.html`.
+
+Other than that there is no opinion on how you should structure your project.
+
+There is an example `HelloWorldScene.ts` file that can be placed inside a `scenes` folder to organize by type or elsewhere to organize by function. For example, you can keep all files specific to the HelloWorld scene in a `hello-world` folder.
+
+It is all up to you!
+
+## Static Assets
+
+Any static assets like images or audio files should be placed in the `public` folder. It'll then be served from the root. For example: http://localhost:8000/images/my-image.png
+
+Example `public` structure:
 
 ```
-http-server -a localhost -p 8000
+    public
+    ├── images
+    │   ├── my-image.png
+    ├── music
+    │   ├── ...
+    ├── sfx
+    │   ├── ...
 ```
 
-Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just
-configure your server to serve the files under the `app/` directory.
+They can then be loaded by Phaser with `this.image.load('my-image', 'images/my-image.png')`.
 
+# TypeScript ESLint
 
-### Running the App in Production
+This template uses a basic `typescript-eslint` set up for code linting.
 
-This really depends on how complex your app is and the overall infrastructure of your system, but
-the general rule is that all you need in production are all the files under the `app/` directory.
-Everything else should be omitted.
+It does not aim to be opinionated.
 
-Angular apps are really just a bunch of static html, css and js files that just need to be hosted
-somewhere they can be accessed by browsers.
+[See here for rules to turn on or off](https://eslint.org/docs/rules/).
 
-If your Angular app is talking to the backend server via xhr or other means, you need to figure
-out what is the best way to host the static files to comply with the same origin policy if
-applicable. Usually this is done by hosting the files by the backend server or through
-reverse-proxying the backend server(s) and webserver(s).
+## Dev Server Port
 
+You can change the dev server's port number by modifying the `vite.config.ts` file. Look for the `server` section:
 
-## Continuous Integration
+```js
+{
+	// ...
+	server: { host: '0.0.0.0', port: 8000 },
+}
+```
 
-### Travis CI
+Change 8000 to whatever you want.
 
-[Travis CI][travis] is a continuous integration service, which can monitor GitHub for new commits
-to your repository and execute scripts such as building the app or running tests. The angular-seed
-project contains a Travis configuration file, `.travis.yml`, which will cause Travis to run your
-tests when you push to GitHub.
+## License
 
-You will need to enable the integration between Travis and GitHub. See the Travis website for more
-instruction on how to do this.
-
-### CloudBees
-
-CloudBees have provided a CI/deployment setup:
-
-<a href="https://grandcentral.cloudbees.com/?CB_clickstart=https://raw.github.com/CloudBees-community/angular-js-clickstart/master/clickstart.json">
-<img src="https://d3ko533tu1ozfq.cloudfront.net/clickstart/deployInstantly.png"/></a>
-
-If you run this, you will get a cloned version of this repo to start working on in a private git repo,
-along with a CI service (in Jenkins) hosted that will run unit and end to end tests in both Firefox and Chrome.
-
-
-## Contact
-
-For more information on AngularJS please check out http://angularjs.org/
-
-[git]: http://git-scm.com/
-[bower]: http://bower.io
-[npm]: https://www.npmjs.org/
-[node]: http://nodejs.org
-[protractor]: https://github.com/angular/protractor
-[jasmine]: http://jasmine.github.io
-[karma]: http://karma-runner.github.io
-[travis]: https://travis-ci.org/
-[http-server]: https://github.com/nodeapps/http-server
+[MIT License](https://github.com/ourcade/phaser3-vite-template/blob/master/LICENSE)
